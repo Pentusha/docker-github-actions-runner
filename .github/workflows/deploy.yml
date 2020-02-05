@@ -1,7 +1,7 @@
 name: Publish Docker
 on:
   push:
-    branches:    
+    branches:
       - master
       - develop
 
@@ -21,7 +21,7 @@ jobs:
     - name: Login
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_TOKEN }}
     - name: Build
-      run: docker buildx build -f Dockerfile -t myoung34/github-runner:latest --output "type=image,push=true" --platform linux/amd64,linux/arm/v7,linux/arm64 .
+      run: docker buildx build -f Dockerfile -t pentusha/github-runner:latest --output "type=image,push=true" --platform linux/amd64,linux/arm/v7,linux/arm64 .
   ubuntu_bionic_deploy:
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +39,7 @@ jobs:
     - name: Login
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_TOKEN }}
     - name: Build
-      run: docker buildx build -f Dockerfile.ubuntu-bionic -t myoung34/github-runner:ubuntu-bionic --output "type=image,push=true" --platform linux/amd64,linux/arm/v7,linux/arm64 .
+      run: docker buildx build -f Dockerfile.ubuntu-bionic -t pentusha/github-runner:ubuntu-bionic --output "type=image,push=true" --platform linux/amd64,linux/arm/v7,linux/arm64 .
   ubuntu_xenial_deploy:
     runs-on: ubuntu-latest
     steps:
@@ -57,4 +57,4 @@ jobs:
     - name: Login
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_TOKEN }}
     - name: Build
-      run: docker buildx build -f Dockerfile.ubuntu-xenial -t myoung34/github-runner:ubuntu-xenial --output "type=image,push=true" --platform linux/amd64,linux/arm/v7,linux/arm64 .
+      run: docker buildx build -f Dockerfile.ubuntu-xenial -t pentusha/github-runner:ubuntu-xenial --output "type=image,push=true" --platform linux/amd64,linux/arm/v7,linux/arm64 .
